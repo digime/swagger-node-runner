@@ -4,12 +4,21 @@ var should = require('should');
 var path = require('path');
 var _ = require('lodash');
 var util = require('util');
+var fs = require('fs');
 
 var SwaggerRunner = require('..');
 
 var DEFAULT_PROJECT_ROOT = path.resolve(__dirname, 'assets', 'project');
 var DEFAULT_PROJECT_CONFIG = { appRoot: DEFAULT_PROJECT_ROOT };
 console.log("SARMA",DEFAULT_PROJECT_CONFIG)
+
+fs.readdir(DEFAULT_PROJECT_ROOT, function(err, items) {
+  console.log(items);
+
+  for (var i=0; i<items.length; i++) {
+      console.log(items[i]);
+  }
+});
 
 var SWAGGER_WITH_ERRORS = {
   swagger: "2.0"
