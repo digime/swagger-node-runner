@@ -234,7 +234,8 @@ describe('index', function() {
           .expect('Content-Type', /json/)
           .end(function(err, res) {
             console.log("SARMA2")
-            console.log(res)
+            console.log(res.body)
+            console.log(err)
             should.not.exist(err);
             res.body.should.eql('Hello, stranger!');
             done();
