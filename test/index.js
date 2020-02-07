@@ -9,6 +9,7 @@ var SwaggerRunner = require('..');
 
 var DEFAULT_PROJECT_ROOT = path.resolve(__dirname, 'assets', 'project');
 var DEFAULT_PROJECT_CONFIG = { appRoot: DEFAULT_PROJECT_ROOT };
+console.log("SARMA",DEFAULT_PROJECT_CONFIG)
 
 var SWAGGER_WITH_ERRORS = {
   swagger: "2.0"
