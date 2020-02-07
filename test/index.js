@@ -467,6 +467,9 @@ describe('index', function() {
       var config = _.clone(DEFAULT_PROJECT_CONFIG);
       config.startWithWarnings = true;
       config.swagger = SWAGGER_WITH_GLOBAL_SECURITY;
+      console.log("SARMA15")
+      console.log(JSON.stringify(config))
+      console.log("SARMA16")
       SwaggerRunner.create(config, function(err, runner) {
           console.log("SARMA14")
           console.log(err)
