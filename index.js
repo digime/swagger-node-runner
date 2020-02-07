@@ -229,6 +229,14 @@ function Runner(appJsConfig, cb) {
       self.api = api;
       self.swagger = api.definition;
       self.securityHandlers = appJsConfig.securityHandlers || appJsConfig.swaggerSecurityHandlers; // legacy name
+      
+      if (self.securityHandlers) {
+        console.log("SARMA10")
+        console.log(self.securityHandlers)        
+      }
+      console.log(self)
+      console.log("SARMA11")
+
       self.bagpipes = createPipes(self);
 
       cb(null, self);
