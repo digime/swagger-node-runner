@@ -7,7 +7,7 @@ var util = require('util');
 
 var SwaggerRunner = require('..');
 
-var DEFAULT_PROJECT_ROOT = './test/assets/project';
+var DEFAULT_PROJECT_ROOT = path.resolve(__dirname, 'assets', 'project');
 var DEFAULT_PROJECT_CONFIG = { appRoot: DEFAULT_PROJECT_ROOT };
 
 var SWAGGER_WITH_ERRORS = {
@@ -375,7 +375,7 @@ describe('index', function() {
           });
       });
     });
-
+    
     it('should accept null body from pipe interface', function(done) {
       var config = _.clone(DEFAULT_PROJECT_CONFIG);
       config.configDir = path.resolve(DEFAULT_PROJECT_ROOT, "config_auto");
