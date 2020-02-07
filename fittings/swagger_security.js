@@ -15,9 +15,12 @@ module.exports = function create(fittingDef, bagpipes) {
   if (fittingDef.securityHandlersModule && !runner.config.securityHandlers) {
 
     var appRoot = runner.config.swagger.appRoot;
+    console.log("SARMA8")
+    console.log(appRoot)
     var handlersPath = path.resolve(appRoot, fittingDef.securityHandlersModule);
-
+    console.log(handlersPath)
     runner.securityHandlers = require(handlersPath);
+    console.log(runner.securityHandler)
     debug('loaded handlers: %s from: %s', Object.keys(runner.securityHandlers), handlersPath);
   }
 
