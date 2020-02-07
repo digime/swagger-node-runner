@@ -233,6 +233,7 @@ describe('index', function() {
           .expect(200)
           .expect('Content-Type', /json/)
           .end(function(err, res) {
+            console.log(res)
             should.not.exist(err);
             res.body.should.eql('Hello, stranger!');
             done();
