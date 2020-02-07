@@ -233,9 +233,6 @@ describe('index', function() {
           .expect(200)
           .expect('Content-Type', /json/)
           .end(function(err, res) {
-            console.log("SARMA2")
-            console.log(res.body)
-            console.log(err)
             should.not.exist(err);
             res.body.should.eql('Hello, stranger!');
             done();
@@ -483,6 +480,9 @@ describe('index', function() {
               .expect(200)
               .expect('Content-Type', /json/)
               .end(function(err, res) {
+                console.log("SARMA2")
+                console.log(res.body)
+                console.log(err)                
                   should.not.exist(err);
                   res.body.should.eql('Hello, Scott!');
                   done();
