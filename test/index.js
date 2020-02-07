@@ -473,22 +473,20 @@ describe('index', function() {
           runner.connectMiddleware().register(app);
 
           var request = require('supertest');
-          setTimeout(() => {
-            request(app)
-            .get('/hello_secured?name=Scott')
-            .set('Accept', 'application/json')
-            .expect(200)
-            .expect('Content-Type', /json/)
-            .end(function(err, res) {
-              console.log("SARMA2")
-              console.log(res.body)
-              console.log(err)                
-                should.not.exist(err);
-                res.body.should.eql('Hello, Scott!');
-                done();
-            });
-          }, 1500);
 
+          request(app)
+              .get('/hello_secured?name=Scott')
+              .set('Accept', 'application/json')
+              .expect(200)
+              .expect('Content-Type', /json/)
+              .end(function(err, res) {
+                console.log("SARMA2")
+                console.log(res.body)
+                console.log(err)                
+                  should.not.exist(err);
+                  res.body.should.eql('Hello, Scott!');
+                  done();
+              });
         });
     });
 });
