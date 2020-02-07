@@ -468,7 +468,8 @@ describe('index', function() {
       config.startWithWarnings = true;
       config.swagger = SWAGGER_WITH_GLOBAL_SECURITY;
       SwaggerRunner.create(config, function(err, runner) {
-
+          console.log("SARMA14")
+          console.log(err)
           var app = require('connect')();
           runner.connectMiddleware().register(app);
 

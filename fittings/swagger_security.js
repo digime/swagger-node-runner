@@ -27,7 +27,9 @@ module.exports = function create(fittingDef, bagpipes) {
   return function swagger_security(context, cb) {
 
     debug('exec');
-
+    console.log("SARMA13")
+    // console.log(runner.securityHandlers)
+    console.log(context)
     var handlers = runner.securityHandlers || {};
     var req = context.request;
     var operation = req.swagger.operation;
