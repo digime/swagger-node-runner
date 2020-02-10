@@ -375,7 +375,7 @@ describe('index', function() {
           });
       });
     });
-    
+
     it('should accept null body from pipe interface', function(done) {
       var config = _.clone(DEFAULT_PROJECT_CONFIG);
       config.configDir = path.resolve(DEFAULT_PROJECT_ROOT, "config_auto");
@@ -453,7 +453,7 @@ describe('index', function() {
     });
   });
 
-  it('should allow paths using global security', function(done) {
+  it.skip('should allow paths using global security', function(done) {
       var config = _.clone(DEFAULT_PROJECT_CONFIG);
       config.startWithWarnings = true;
       config.swagger = SWAGGER_WITH_GLOBAL_SECURITY;
