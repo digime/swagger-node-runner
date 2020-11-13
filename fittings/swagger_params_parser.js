@@ -25,7 +25,8 @@ module.exports = function create(fittingDef, bagpipes) {
     },
     textOptions: {
       type: '*/*'
-    }
+    },
+    options: _.get(bagpipes, "config.options"),
   });
 
   return function swagger_params_parser(context, next) {
@@ -84,20 +85,29 @@ function parseRequest(req, fittingDef, cb) {
   async.series([
     function parseMultipart(cb) {
       if (multFields.length === 0) { return cb(); }
-      var mult = require('multer')(fittingDef.multerOptions);
-      mult.fields(multFields)(req, res, function(err) {
-        if (err) { /* istanbul ignore next */
-          if (err.code === 'LIMIT_UNEXPECTED_FILE') { err.statusCode = 400 }
-          return cb(err);
-        }
-        if (req.files) {
-          _.forEach(req.files, function(file, name) {
-            req.files[name] = (Array.isArray(file) && file.length === 1) ? file[0] : file;
-          });
-        }
-        debugContent('multer parsed req.body:', req.body);
-        cb();
-      });
+      const skipMultipart = _.get(fittingDef, "options.skipMultipart");
+      if (!skipMultipart) {
+        var mult = require('multer')(fittingDef.multerOptions);
+        mult.fields(multFields)(req, res, function(err) {
+          if (err) { /* istanbul ignore next */
+            if (err.code === 'LIMIT_UNEXPECTED_FILE') { err.statusCode = 400 }
+            return cb(err);
+          }
+          if (req.files) {
+            _.forEach(req.files, function(file, name) {
+              req.files[name] = (Array.isArray(file) && file.length === 1) ? file[0] : file;
+            });
+          }
+          debugContent('multer parsed req.body:', req.body);
+          cb();
+        });
+      } else {
+        req.files = {};
+        _.forEach(multFields, function(obj) {
+          _.set(req.files, obj.name, obj);
+        });
+        cb();        
+      }
     },
     function parseUrlencoded(cb) {
       if (req.body || !shouldParseForm) { return cb(); }
