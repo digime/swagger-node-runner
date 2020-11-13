@@ -229,6 +229,7 @@ function Runner(appJsConfig, cb) {
       self.api = api;
       self.swagger = api.definition;
       self.securityHandlers = appJsConfig.securityHandlers || appJsConfig.swaggerSecurityHandlers; // legacy name
+      self.options = _.get(appJsConfig, "options");
       self.bagpipes = createPipes(self);
 
       cb(null, self);
@@ -301,7 +302,8 @@ function createPipes(self) {
   var pipesConfig = {
     userFittingsDirs: fittingsDirs,
     userViewsDirs: viewsDirs,
-    swaggerNodeRunner: self
+    swaggerNodeRunner: self,
+    options: _.get(self, "options"),
   };
   return bagpipes.create(pipesDefs, pipesConfig);
 }
